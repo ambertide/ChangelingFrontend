@@ -157,11 +157,35 @@ html, body {
 }
 
 .characterPortrait {
-    display: inline-block;
     border-width: 1px;
     padding: 2px;
     background-color: white;
     text-align: left;
+}
+
+.portraitPlaceholder {
+    width: 164px; /* Placeholder values to occupy space in*/
+    height: 194px; /* the grid itself. */
+}
+
+/**
+ * Used to select player portraits when active.
+ */
+.characterSelectButton {
+    position: absolute;
+    left: 0;
+    border: none;
+    background: url("media/effects/blood_splatter.png");
+    opacity: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.pressed {
+    transition: 0.2s ease-out;
+    opacity: 1;
+    background: url("media/effects/blood_splatter.png");
 }
 
 .changeling {
@@ -169,7 +193,13 @@ html, body {
     box-shadow: 0 0 10px 1px crimson;
 }
 
+.characterPortraitImageWrapper {
+    position: relative;
+}
+
 .characterPortraitImage {
+    position: relative;
+    z-index: 0;
     width: 160px;
     height: 160px;
 }
@@ -319,4 +349,70 @@ html, body {
 
 .hiddenButton {
     display: none;
+}
+
+.flatDockPlayers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 20px;
+    margin: auto;
+}
+
+.flatDock {
+    position: absolute;
+}
+
+.selectText {
+    width: 30%;
+    position: absolute;
+    top: 15%;
+    color: white;
+    font-size: 20px;
+    text-align: justify-all;
+    font-family: 'Lora', sans-serif;
+}
+
+.changelingSelectText {
+    text-shadow: 0 0 10px rgb(236, 153, 0);
+}
+
+.changelingSelectText:hover {
+    transition: text-shadow 0.5s;
+    text-shadow: 0 0 20px rgb(236, 153, 0);
+}
+
+.flatDockButtonWrapper {
+    margin-top: 20px;
+    width: 60%;
+    height: 100%;
+}
+
+.flatDockButtonWrapper button {
+    border-radius: 0;
+    height: 100%;
+}
+
+.selectView {
+
+    transition-delay: 5s;
+    transition: 1s ease;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.changelingSelectView {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.changelingSelectView .characterPortrait:hover {
+    transition: box-shadow 0.4s ease-out;
+    box-shadow: 0 0 5px 5px crimson;
+}
+
+.camperVoteView .characterPortrait:hover {
+    transition: box-shadow 0.4s ease-out;
+    box-shadow: 0 0 5px 5px crimson;
 }

@@ -33,9 +33,9 @@ export const turnType = {
 
 /**
  * A constructor that creates a Turn object,
- * a turn object represents the state of a turn. 
+ * a turn object represents the state of a turn.
  */
-export function Turn() {
-	this.turnCount = 0;	// Which turn is it.
-	this.turnType = turnType.LOBBY; // What type of turn is it.
+export function Turn(turnCount, turnType) {
+	this.turnCount = turnCount;	// Which turn is it.
+	this.turnType = turnType; // What type of turn is it.
 }
