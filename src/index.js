@@ -33,6 +33,7 @@ class ChangelingGame extends React.Component {
 		this.requestGameJoin = this.requestGameJoin.bind(this);  // req_game_join
 		this.requestGameCreation = this.requestGameCreation.bind(this);  // req_game_host
 		this.requestGameStart = this.requestGameStart.bind(this);  // req_game_start
+		this.requestNextTurn = this.requestNextTurn.bind(this);
 		this.acknowledgeGameHost = this.acknowledgeGameHost.bind(this); // resp_ack_host
 		this.acknowledgeSyncPlayer = this.acknowledgeSyncPlayer.bind(this);  // resp_sync_players
 		this.acknowledgeGameJoin = this.acknowledgeGameJoin.bind(this);  // resp_ack_join
@@ -54,6 +55,9 @@ class ChangelingGame extends React.Component {
 		});
 		props.socket.on("resp_start_game", () => {
 			this.acknowledgeGameStart();
+		});
+		props.socket.on("resp_err_occurred", (data) => {
+			this.acknowledgeError(data);
 		});
 	}
 
@@ -119,6 +123,7 @@ class ChangelingGame extends React.Component {
 
 	requestNextTurn()
 	{
+		socket.emit("req_next_turn");
 	}
 
 	/**
@@ -129,6 +134,10 @@ class ChangelingGame extends React.Component {
 		socket.emit("req_start_game");
 	}
 
+	acknowledgeError(data) {
+		let payload = JSON.parse(data)
+		console.error(payload['err_type']);
+	}
 
 	/**
 	 * Event for server response indicating game state
@@ -137,10 +146,9 @@ class ChangelingGame extends React.Component {
 	 * @param data Data holding the new game state.
 	 */
 	acknowledgeGameStateChange(data) {
-		console.log(data);
 		const payload = JSON.parse(data);
-		console.log(payload);
 		const newGameState = payload["game_state"];
+		console.log(payload);
 		this.setState({
 			currentTurn: new Turn(payload["turn_count"], newGameState),
 			turn_owner: payload["ownership"],
@@ -163,7 +171,7 @@ class ChangelingGame extends React.Component {
 			{
 				gameState: gameStateType.GAME,
 				buttonText: "Next",
-				buttonOnClick: this.requestNextTurn
+				buttonCallback: this.requestNextTurn
 			}
 		);
 	}
