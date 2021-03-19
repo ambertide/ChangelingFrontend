@@ -55,7 +55,6 @@ class LoginScreen extends React.Component {
 	joinGame() {
 		let roomIDInput = document.getElementById("roomID"); // Find the input for roomID
 		let roomID = roomIDInput.value; // Get the entered RoomID
-		console.log(this.state.joinGameCallback);
 		let name = document.getElementById("username").value;
 		let portrait_id = document.getElementsByClassName("characterPortraitSelectorImage")[0].src.split("/").reverse()[0];
 		// Gets the portrait image name

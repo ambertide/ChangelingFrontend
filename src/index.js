@@ -137,7 +137,9 @@ class ChangelingGame extends React.Component {
 	 * @param data Data holding the new game state.
 	 */
 	acknowledgeGameStateChange(data) {
+		console.log(data);
 		const payload = JSON.parse(data);
+		console.log(payload);
 		const newGameState = payload["game_state"];
 		this.setState({
 			currentTurn: new Turn(payload["turn_count"], newGameState),
@@ -239,23 +241,36 @@ class ChangelingGame extends React.Component {
 				return (<GuestView joinGameCallback={this.requestGameJoin}
 								   hostGameCallback={this.requestGameCreation}/>);
 			default: // Means we are either on the lobby or in the game.
-				return (
-					<div className="gameViewWrapper">
-						<Dock players={this.state.players}
-							  showButton={this.shouldButtonShown()}
-							  buttonText={this.state.buttonText}
-							  buttonOnClick={this.state.buttonCallback.bind(this)}
-							  onPlayerSelectHoist={this.setSelectedPlayer}
-							  turnType_={this.state.currentTurn.turnType}
-							  turnOwner={this.state.turn_owner}
-						/>
-						<MainCard player={this.state.player} turn={this.state.currentTurn}/>
-						<TopDock gameStarted={this.state.gameState === gameStateType.GAME}
-								 turnsRemaining={40 - this.state.currentTurn.turnCount}
-								 roomID={this.state.roomID}
-						/>
-					</div>
-				);
+				switch (this.state.currentTurn.turnType) {
+					case turnType.BURN_CAMPER:
+						return (<div className="gameViewWrapper">
+							<PlayerVoteView players={players}
+											showButton={true}
+											buttonOnClick={(player) => console.log("PRINT!")}
+											onPlayerSelectHoist={(player) => console.log(player.user_id)}
+											turnType_={turnType.BURN_CAMPER}
+											turnOwner={players[4]}
+							/>
+						</div> );
+					default:
+					return (
+							<div className="gameViewWrapper">
+								<Dock players={this.state.players}
+									  showButton={this.shouldButtonShown()}
+									  buttonText={this.state.buttonText}
+									  buttonOnClick={this.state.buttonCallback.bind(this)}
+									  onPlayerSelectHoist={this.setSelectedPlayer}
+									  turnType_={this.state.currentTurn.turnType}
+									  turnOwner={this.state.turn_owner}
+								/>
+								<MainCard player={this.state.player} turn={this.state.currentTurn}/>
+								<TopDock gameStarted={this.state.gameState === gameStateType.GAME}
+										 turnsRemaining={40 - this.state.currentTurn.turnCount}
+										 roomID={this.state.roomID}
+								/>
+							</div>
+						);
+				}
 		}
 	}
 }
@@ -269,13 +284,6 @@ const players = [
 ];
 
 ReactDOM.render(
-		<PlayerVoteView players={players}
-						  showButton={true}
-						  buttonOnClick={(player) => console.log("PRINT!")}
-						  onPlayerSelectHoist={(player) => console.log(player.user_id)}
-						  turnType_={turnType.BURN_CAMPER}
-						  turnOwner={players[4]}
-	/>,
-//	<ChangelingGame socket={socket}/>,
+	<ChangelingGame socket={socket}/>,
 	document.getElementById('root')
 );
