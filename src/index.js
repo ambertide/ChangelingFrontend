@@ -3,8 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GuestView from './GuestView';
 import {ChangelingSelectView, Dock, MainCard, PlayerVoteView, TopDock} from './GameView';
-import {Player, playerType, Turn, turnType} from './gameInternals';
+import {Player, playerType, Turn, turnType, generateTurnType} from './gameInternals';
 import {io} from "socket.io-client";
+import getContent from "./language";
 
 const socket = io.connect("localhost:5000");
 
@@ -140,6 +141,8 @@ class ChangelingGame extends React.Component {
 		console.error(payload['err_type']);
 	}
 
+
+
 	/**
 	 * Event for server response indicating game state
 	 * change.
@@ -151,7 +154,7 @@ class ChangelingGame extends React.Component {
 		const newGameState = payload["game_state"];
 		console.log(payload);
 		this.setState({
-			currentTurn: new Turn(payload["turn_count"], newGameState),
+			currentTurn: new Turn(payload["turn_count"], generateTurnType(newGameState, this.state.player, payload['ownership'])),
 			turn_owner: payload["ownership"],
 		});
 		switch (newGameState) {
@@ -270,7 +273,11 @@ class ChangelingGame extends React.Component {
 											turnType_={turnType.BURN_CAMPER}
 											turnOwner={this.state.turn_owner}
 							/>
-						</div>)
+						</div>);
+					case turnType.CAMPFIRE_OUT:
+						return (<div className="campfireOutViewWrapper">
+							{getContent('en', 'campfire_out')}
+						</div>);
 					default:
 					return (
 							<div className="gameViewWrapper">

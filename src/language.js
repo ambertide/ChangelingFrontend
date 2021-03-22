@@ -16,10 +16,15 @@ const content = {
                             "...For every five turns, you will vote to burn one of your fellow campers in the campfire, if it is a changeling, good, otherwise, big mistake. Alternatively, there is a chance the campfire will go out, another one of you will be replace by a Changeling.",
                             "Either kill all the changelings or survive until dawn to win, you will lose if the changelings become the majority."],
         "replace_button": "Replace.",
+        "dead_card_title": "Gone",
+        "dead_card_exp": ["Fires cleanse, whatever impurities tarnished your soul before has been swept away from your body, but along with it, so did your soul. You are dead, a candle burnt, a fire extinguished, in the eyes of the Old Gods, whose domains include this forest and so much more, what you were is irrelevant, perhaps you were a changeling, perhaps merely a misunderstanding...",
+                          "In any case, there wil be no rest for you until dawn, for the justice of the great beyond cannot shine through these woods 'till the rise of dawn, you will sit, with your friends, one last time, and share the truth, and only the truth."],
         "changeling_select_text": "As the last turned Changeling, it is your responsibility to change the next camper to be replaced, make your choice strategically, whoever knows you best, should be the one to go.",
         "camper_vote_view": ["In this turn, you'll vote for which Camper to throw into fire.",
-                             "Select the camper you are most suspicious of being the Changeling."]
+                             "Select the camper you are most suspicious of being the Changeling."],
+        'campfire_out': "The Campfire has gone out. Do not move. Do not make a sound. One of you won't be one of you anymore by the time fire roars again..."
     },
+
     "tr": {}
 }
 

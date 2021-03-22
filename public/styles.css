@@ -278,6 +278,14 @@ html, body {
     transition: background-image 0.4s;
 }
 
+
+/* Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="/s/photos/extinguished-candle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> **/
+.deadCard {
+    background-image: url("media/card_backgrounds/dead.jpg");
+    background-position: center;
+    transition: background-image 0.4s;
+}
+
 .topDock {
     width: 20%;
     height:10%;

@@ -39,3 +39,19 @@ export function Turn(turnCount, turnType) {
 	this.turnCount = turnCount;	// Which turn is it.
 	this.turnType = turnType; // What type of turn is it.
 }
+
+/**
+ *	Campfire out comes in two distinct flavours. If the player is the room owner
+ *	during a campfire out, they can turn people to changelings.
+ *
+ * @param gameState {turnType} State of the turn.
+ * @param roomOwner {Player} Client user.
+ * @param userID {String} ID of the user who is the turn owner.
+ * @return {turnType} The type the turn will be in.
+ */
+export function generateTurnType(gameState, roomOwner, userID) {
+	if (turnType === turnType.CAMPFIRE_OUT && userID === roomOwner.user_id) {
+		return turnType.CAMPFIRE_OUT_VOTER;
+	}
+	return gameState; // Otherwise return normal.
+}
