@@ -62,16 +62,14 @@ class ChangelingGame extends React.Component {
 	}
 
 	/**
-	 * Set the selected player to the playerID,
-	 * 	this is a callback function to be passed into the
-	 * 	Dock for hoisting the selected player state.
-	 * @param playerID
+	 * Emit a request to affect a player, ie: Change player state.
+	 *
+	 * @param playerID ID of the player to change the state of.
 	 */
 	setSelectedPlayer(playerID) {
-		this.setState({
-			selectedPlayer: playerID
-		});
+		socket.emit("req_affect_player", JSON.stringify({"selected_user": playerID}));
 	}
+
 
 	/**
 	 * Indicates wheter or not the button should be show.
@@ -121,6 +119,9 @@ class ChangelingGame extends React.Component {
 		);
 	}
 
+	/**
+	 * Request the next turn from the server.
+	 */
 	requestNextTurn()
 	{
 		socket.emit("req_next_turn");
@@ -251,15 +252,25 @@ class ChangelingGame extends React.Component {
 			default: // Means we are either on the lobby or in the game.
 				switch (this.state.currentTurn.turnType) {
 					case turnType.BURN_CAMPER:
-						return (<div className="gameViewWrapper">
-							<PlayerVoteView players={players}
+						return (<div className="voteViewWrapper">
+							<PlayerVoteView players={this.state.players}
 											showButton={true}
 											buttonOnClick={(player) => console.log("PRINT!")}
-											onPlayerSelectHoist={(player) => console.log(player.user_id)}
+											onPlayerSelectHoist={this.setSelectedPlayer}
 											turnType_={turnType.BURN_CAMPER}
-											turnOwner={players[4]}
+											turnOwner={this.state.turn_owner}
 							/>
 						</div> );
+					case turnType.CAMPFIRE_OUT_VOTER: // When you are the changeling voting to burn someone.
+						return (<div className="voteViewWrapper">
+							<PlayerVoteView players={this.state.players}
+											showButton={true}
+											buttonOnClick={(player) => console.log("PRINT!")}
+											onPlayerSelectHoist={this.setSelectedPlayer}
+											turnType_={turnType.BURN_CAMPER}
+											turnOwner={this.state.turn_owner}
+							/>
+						</div>)
 					default:
 					return (
 							<div className="gameViewWrapper">
@@ -282,15 +293,6 @@ class ChangelingGame extends React.Component {
 		}
 	}
 }
-
-const players = [
-	new Player("A124", "Elsa", "f_2", playerType.CAMPER, true),
-	new Player("A123", "Henry", "m_1", playerType.CAMPER, false),
-	new Player("A122", "Albert", "m_2", playerType.CAMPER, false),
-	new Player("A121", "Charlie", "m_3", playerType.CHANGELING, false),
-	new Player("A120", "Charlotte", "f_3", playerType.CAMPER, false)
-];
-
 ReactDOM.render(
 	<ChangelingGame socket={socket}/>,
 	document.getElementById('root')
