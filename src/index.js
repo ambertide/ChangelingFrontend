@@ -7,7 +7,7 @@ import {Player, playerType, Turn, turnType, generateTurnType} from './gameIntern
 import {io} from "socket.io-client";
 import getContent from "./language";
 
-const socket = io.connect("localhost:5000");
+const socket = io.connect("https://changeling-backend.herokuapp.com/");
 
 const gameStateType = {
 	PENDING: "pending", // For waiting login,
@@ -42,6 +42,7 @@ class ChangelingGame extends React.Component {
 		this.acknowledgeGameStateChange = this.acknowledgeGameStateChange.bind(this); // resp_sync_gamestate
 		this.setSelectedPlayer = this.setSelectedPlayer.bind(this);
 		this.shouldButtonShown = this.shouldButtonShown.bind(this);
+		this.setLanguage = this.setLanguage.bind(this);
 		props.socket.on("resp_ack_host", (data) => {
 			this.acknowledgeGameHost(data)
 		});
@@ -79,6 +80,16 @@ class ChangelingGame extends React.Component {
 	 */
 	shouldButtonShown() {
 		return this.state.player.user_id === this.state.turn_owner;
+	}
+
+	/**
+	 * Set the language code.
+	 * 
+	 * @param {String} languageCode 
+	 */
+	setLanguage(languageCode) {
+		document.languageCode = languageCode;
+		this.forceUpdate();  // Update the components to make the change affect the page.
 	}
 
 	/**
@@ -251,7 +262,9 @@ class ChangelingGame extends React.Component {
 		switch (this.state.gameState) {
 			case gameStateType.PENDING:
 				return (<GuestView joinGameCallback={this.requestGameJoin}
-								   hostGameCallback={this.requestGameCreation}/>);
+								   hostGameCallback={this.requestGameCreation}
+								   languageSwitchCallback={this.setLanguage}	   
+								   />);
 			default: // Means we are either on the lobby or in the game.
 				switch (this.state.currentTurn.turnType) {
 					case turnType.BURN_CAMPER:
@@ -276,7 +289,7 @@ class ChangelingGame extends React.Component {
 						</div>);
 					case turnType.CAMPFIRE_OUT:
 						return (<div className="campfireOutViewWrapper">
-							{getContent('en', 'campfire_out')}
+							{getContent('campfire_out')}
 						</div>);
 					default:
 					return (

@@ -1,6 +1,8 @@
 import { extend } from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import getContent from './language'
+
 
 class PortraitSelect extends React.Component {
 	constructor (props) {
@@ -80,15 +82,15 @@ class LoginScreen extends React.Component {
 				<PortraitSelect/> 
 				<div className="loginScreenForm">
 					<div className="loginScreenFormArea">
-						<input type="text" placeholder="Name" className="loginFormMember"  id="username"/>
+						<input type="text" placeholder={getContent('name')} className="loginFormMember"  id="username"/>
 						<button className="loginFormMember" id="hostGameButton"
 							onClick={this.hostGame}>
-								Host Game
+								{getContent('host_button_text')}
 							</button>
-						<input type="text" className="loginFormMember"  placeholder="Room ID" id="roomID"/>
+						<input type="text" className="loginFormMember"  placeholder={getContent('room_id')} id="roomID"/>
 						<button id="joinGameButton" className="loginFormMember" 
 								onClick={this.joinGame}>
-									Join
+									{getContent('join_button_text')}
 								</button>
 					</div>
 				</div>
@@ -97,6 +99,18 @@ class LoginScreen extends React.Component {
 	}
 }
 
+
+function SwitchLanguage(props) {
+	let flag = '🇹🇷';
+	let ariaLabel = 'Turkish';
+	let callback = () => {props.setLanguage('tr')};
+	if (document.languageCode === 'tr') {
+		flag = '🇬🇧';
+		ariaLabel = 'English';
+		callback = () => {props.setLanguage('en')};
+	}
+	return <button className="languageSwitchButton" onClick={callback} aria-label={ariaLabel}>{flag}</button>;
+}
 
 
 /**
@@ -116,33 +130,22 @@ class GuestView extends React.Component {
         return (
             <div className="guestView">
 				<div className="gameTitle">
-					<h1>Changeling</h1>
-					<h3>the Social Deception Game</h3>
+					<h1>{getContent('title')}</h1>
+					<h3>{getContent('subtitle')}</h3>
 				</div>
                 <LoginScreen hostGameCallback={this.state.hostGameCallback}
 							 joinGameCallback={this.state.joinGameCallback}/>
 				<div className="gameRules">
-					<p>
-						You and a group of your friends have decided to travel into the woods near your town,
-							while setting up your camp for the night, one of you have been replaced by a Changeling,
-							as you realise the strange hapenings going on around you, you decide to ask each other questions
-							only the real "you" can know, can you reveal the changeling?
-					</p>
-					<p>
-						Players take turns asking questions to every other player the Changeling must always lie! Other players,
-						 may <em>choose</em> to lie if they are too emberassed to answer truthfully, they should be ready to face the
-						 consequences, for every five turns, there is a one in a three chance the campfire will go out and another one of you, chosen by the most recent changeling
-						 will replaced by a changeling, otherwise, vote to select a camper to throw to the fire, if they are a changeling, they will
-						 melt away, if they are not... well, pity.
-					</p>
-					<p>
-						Win as campers by eliminating all the changelings or by surviving for forty turns, win as changelings by becoming the majority.
-					</p>
+					{getContent('game_rules').map((paragraph) => <p>{paragraph}</p>)}
 				</div>
+				<SwitchLanguage setLanguage={this.props.languageSwitchCallback}/>
             </div>
         )
     }
 }
+
+
+
 
 
 

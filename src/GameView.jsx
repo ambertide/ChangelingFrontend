@@ -130,10 +130,10 @@ function MainCard(props) {
 		<div className={"mainCard " + playerRole +"Card"}>
 			<div className="cardContent">
 				<div className="cardTitle">
-					<h3>{getContent('en', playerRole + '_card_title')}</h3>
+					<h3>{getContent(playerRole + '_card_title')}</h3>
 				</div>
 				<div className="cardExp">
-					{getContent('en', playerRole + '_card_exp').map((paragraph) => <p>{paragraph}</p>)}
+					{getContent(playerRole + '_card_exp').map((paragraph) => <p>{paragraph}</p>)}
 				</div>
 			</div>
 		</div>);
@@ -167,11 +167,11 @@ export function ChangelingSelectView(props) {
 	let campersOnly = props.players.filter((player) => player.playerRole === playerType.CAMPER);
 	return <div className="selectView changelingSelectView">
 		<p className="selectText changelingSelectText">
-			{getContent("en", "changeling_select_text")}
+			{getContent("changeling_select_text")}
 		</p>
 		<Dock players={campersOnly}
 				 showButton={false}
-				 buttonText={getContent("en", "replace_button")}
+				 buttonText={getContent("replace_button")}
 				 buttonOnClick={props.buttonOnClick}
 				 onPlayerSelectHoist={props.onPlayerSelectHoist}
 				 turnType_={props.turnType_}
@@ -188,11 +188,11 @@ export function PlayerVoteView(props) {
 	let livingOnly = props.players.filter((player) => player.playerRole !== playerType.DEAD);
 	return <div className="selectView camperVoteView">
 		<p className="selectText camperVoteText">
-			{getContent("en", "camper_vote_view").map((paragraph) => <p>{paragraph}</p>)}
+			{getContent("camper_vote_view").map((paragraph) => <p>{paragraph}</p>)}
 		</p>
 		<Dock
 			players={livingOnly}
-			buttonText={getContent("en","vote_button")}
+			buttonText={getContent("vote_button")}
 			buttonOnClick={props.buttonOnClick}
 			onPlayerSelectHoist={props.onPlayerSelectHoist}
 			turnType_={props.turnType}
