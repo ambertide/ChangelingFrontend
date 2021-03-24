@@ -101,15 +101,15 @@ class LoginScreen extends React.Component {
 
 
 function SwitchLanguage(props) {
-	let flag = '🇹🇷';
+	let flag = 'tr';
 	let ariaLabel = 'Turkish';
 	let callback = () => {props.setLanguage('tr')};
 	if (document.languageCode === 'tr') {
-		flag = '🇬🇧';
+		flag = 'gb';
 		ariaLabel = 'English';
 		callback = () => {props.setLanguage('en')};
 	}
-	return <button className="languageSwitchButton" onClick={callback} aria-label={ariaLabel}>{flag}</button>;
+	return <button className="languageSwitchButton" onClick={callback} aria-label={ariaLabel}><img className="countryFlag" alt={flag} src={`media/country_flags/${flag}.svg`}/></button>;
 }
 
 

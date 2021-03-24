@@ -388,7 +388,7 @@ html, body {
 
 .changelingSelectText:hover {
     transition: text-shadow 0.5s;
-    text-shadow: 0 0 20px rgb(236, 153, 0);
+    text-shadow: 0 0 20px #ec9900;
 }
 
 .flatDockButtonWrapper {
@@ -439,4 +439,8 @@ html, body {
     position: absolute;
     left: 30px;
     top: 30px;
+}
+
+.countryFlag {
+    max-width: 30px;
 }
