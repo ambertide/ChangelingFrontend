@@ -7,7 +7,10 @@ import {Player, playerType, Turn, turnType, generateTurnType} from './gameIntern
 import {io} from "socket.io-client";
 import getContent from "./language";
 
-const socket = io.connect("https://changeling-backend.herokuapp.com/");
+const DEBUG = false; // This determines the debug mode.
+const url = DEBUG ? "localhost:5000" : "https://changeling-backend.herokuapp.com/";
+
+const socket = io.connect(url);  // Load the URL.
 
 const gameStateType = {
 	PENDING: "pending", // For waiting login,
