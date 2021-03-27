@@ -444,3 +444,7 @@ html, body {
 .countryFlag {
     max-width: 30px;
 }
+
+.centeredView {
+    margin: auto;
+}

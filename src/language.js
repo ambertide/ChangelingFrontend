@@ -24,13 +24,15 @@ const content = {
                             "...For every five turns, you will vote to burn one of your fellow campers in the campfire, if it is a changeling, good, otherwise, big mistake. Alternatively, there is a chance the campfire will go out, another one of you will be replace by a Changeling.",
                             "Either kill all the changelings or survive until dawn to win, you will lose if the changelings become the majority."],
         "replace_button": "Replace.",
-        "dead_card_title": "Gone",
+        "dead_card_title": "Spirit",
         "dead_card_exp": ["Fires cleanse, whatever impurities tarnished your soul before has been swept away from your body, but along with it, so did your soul. You are dead, a candle burnt, a fire extinguished, in the eyes of the Old Gods, whose domains include this forest and so much more, what you were is irrelevant, perhaps you were a changeling, perhaps merely a misunderstanding...",
                           "In any case, there wil be no rest for you until dawn, for the justice of the great beyond cannot shine through these woods 'till the rise of dawn, you will sit, with your friends, one last time, and share the truth, and only the truth."],
         "changeling_select_text": "As the last turned Changeling, it is your responsibility to change the next camper to be replaced, make your choice strategically, whoever knows you best, should be the one to go.",
         "camper_vote_view": ["In this turn, you'll vote for which Camper to throw into fire.",
                              "Select the camper you are most suspicious of being the Changeling."],
         "campfire_out": "The Campfire has gone out. Do not move. Do not make a sound. One of you won't be one of you anymore by the time fire roars again...",
+        "changeling_win": "The intruders have been punished, the night rules once more, uncontested.",
+        "camper_win": "Despite all the death and tragedy, we have made it out alive, into the dawn."
     },
 
     "tr": {
@@ -52,19 +54,20 @@ const content = {
         "changeling_card_exp": ["Sen bir değişkensin! Değişkenler, başka yaratıkların görüntülerine bürünebilen güçlü perilerdir, ormanlarına giren insanlara acımazlar.",
                                 "Bir değişken olarak, sana sorulan sorulara yanlış yanıtlar vermek, yalan söylemek zorundasın, kampçıları yalana itecek sorular sormaya çalış.",
                                 "Her beş turda bir kamp ateşi sönebilir, eğer bu olursa, en yeni değişken olmuş oyuncu, bir sonraki değişkeni seçecek. Seni en iyi bilen kişiden kurtulmaya çalış."],
-        "camper_card_title": "Camper",
+        "camper_card_title": "Kampçı",
         "camper_card_exp": ["It was a mistake to the go the forest in your town that was claimed to be haunted, as shortly after, one of you was replaced by a Changeling. To find who is the changeling, you and your friends decide to play a game.",
                             "Each turn, one of you will ask a question, everyone in the group must answer, changelings cannot tell the truth about their host, so they will lie, if the question is too personal, you may lie too, but beware...",
                             "...For every five turns, you will vote to burn one of your fellow campers in the campfire, if it is a changeling, good, otherwise, big mistake. Alternatively, there is a chance the campfire will go out, another one of you will be replace by a Changeling.",
                             "Either kill all the changelings or survive until dawn to win, you will lose if the changelings become the majority."],
-        "replace_button": "Replace.",
-        "dead_card_title": "Gone",
+        "replace_button": "Değiştir.",
+        "dead_card_title": "Ruh",
         "dead_card_exp": ["Fires cleanse, whatever impurities tarnished your soul before has been swept away from your body, but along with it, so did your soul. You are dead, a candle burnt, a fire extinguished, in the eyes of the Old Gods, whose domains include this forest and so much more, what you were is irrelevant, perhaps you were a changeling, perhaps merely a misunderstanding...",
                           "In any case, there wil be no rest for you until dawn, for the justice of the great beyond cannot shine through these woods 'till the rise of dawn, you will sit, with your friends, one last time, and share the truth, and only the truth."],
         "changeling_select_text": "As the last turned Changeling, it is your responsibility to change the next camper to be replaced, make your choice strategically, whoever knows you best, should be the one to go.",
-        "camper_vote_view": ["In this turn, you'll vote for which Camper to throw into fire.",
-                             "Select the camper you are most suspicious of being the Changeling."],
-        "campfire_out": "The Campfire has gone out. Do not move. Do not make a sound. One of you won't be one of you anymore by the time fire roars again...",
+        "camper_vote_view": "Bu turda, Değişken olmasından en çok şüphelendiğiniz kampçıyı ateşe atmalısınız. Oyunuzu verin.",
+        "campfire_out": "Kamp ateşi söndü, ses çıkarma, hareket etme. Alever geri döndüğünde, aranızdan biri artık değişmiş olacak.",
+        "changeling_win": "Ormanımıza girmeye cürret edenler cezalandırıldı, gece bir kez daha tartışmasız hükmünü sürüyor.",
+        "camper_win": "Yaşadığımız bütün ölüm ve trajediye karşı, şafağa çıkmayı başardık."
     }
 }
 

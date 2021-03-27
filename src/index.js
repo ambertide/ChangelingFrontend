@@ -291,9 +291,13 @@ class ChangelingGame extends React.Component {
 							/>
 						</div>);
 					case turnType.CAMPFIRE_OUT:
-						return (<div className="campfireOutViewWrapper">
+						return (<div className="centerView">
 							{getContent('campfire_out')}
 						</div>);
+					case turnType.CAMPER_VICTORY:
+						return (<div className="centerView">{getContent('camper_victory')}</div>);
+					case turnType.CHANGELING_VICTORY:
+						return (<div className="centerView">{getContent('changeling_victory')}</div>);
 					default:
 					return (
 							<div className="gameViewWrapper">
